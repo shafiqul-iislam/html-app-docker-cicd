@@ -1,0 +1,11 @@
+services:
+  browsersync:
+    image: node:18-alpine
+    working_dir: /app
+    volumes: #it will auto update to docker container, as i reload the browser
+      - .:/app
+    ports:
+      - "3000:3000"
+    command: > # run browser-sync, for auto update
+      sh -c "npm install -g browser-sync &&
+             browser-sync start --server --files '*' --port 3000 --host 0.0.0.0"
